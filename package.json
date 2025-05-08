@@ -1,0 +1,17 @@
+{
+  "name": "melon-ticket-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "jimp": "^0.16.13",
+    "puppeteer": "^24.8.1",
+    "tesseract.js": "^6.0.1"
+  }
+}

@@ -1,0 +1,1161 @@
+<!DOCTYPE html><html lang="ko"><head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Melon Ticket - Global</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://cdnticket.melon.co.kr/resource/image/web/common/pc_32.ico"><!-- 파비콘 추가 -->
+     <!-- IOS용 -->
+    <link rel="apple-touch-icon-precomposed" href="https://cdnticket.melon.co.kr/resource/image/web/common/ios_120.png">
+	<link rel="apple-touch-icon-precomposed" sizes="180x180" href="https://cdnticket.melon.co.kr/resource/image/web/common/ios_180.png">
+	<meta name="keywords" content="K-pop, Kpop, Concert, Musical, Melon, Melon Ticket">
+	<meta name="description" content="Offers tickets for K-pop Concerts, Musicals and Theatre in Korea.">
+    <meta property="og:title" content="">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="듣다·보다·만나다, 멜론티켓">
+    <meta name="viewport" content="width=1126">
+    <script src="/resource/script/phase/deployPhaseUtils.js"></script>
+<!-- 네이버 광고 로그분석 -->
+<!-- 공통 적용 스크립트 , 모든 페이지에 노출되도록 설치. 단 전환페이지 설정값보다 항상 하단에 위치해야함 -->
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"> </script><script type="text/javascript" async="" src="https://ssl.pstatic.net/melona/libs/gfp-nac-module/synchronizer.js"></script>
+<script type="text/javascript">
+    // console.log("##########################################");
+    // console.log("##########################################");
+    // console.log("네이버 광고 로그 분석 공통 스크립트 실행");
+    // console.log("script_common.jsp");
+    // console.log("##########################################");
+    // console.log("##########################################");
+    if (!wcs_add) var wcs_add={};
+    wcs_add["wa"] = "s_322bdbd6fd48";
+    if (!_nasa) var _nasa={};
+    if(window.wcs){
+        wcs.inflow("melon.com");
+        wcs_do(_nasa);
+    }
+</script>
+<!-- END 네이버 광고 로그분석 -->
+<script>
+</script>
+<script type="text/javascript" src="/resource/script/web/common/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="/resource/script/web/common/jquery-migrate-3.3.2.min.js"></script>
+    <script type="text/javascript" src="/resource/script/web/common/jquery.inputmask.bundle.js"></script>
+    <script type="text/javascript" src="/resource/script/web/common/ui_script.js"></script><style type="text/css">input.styled { display: none; } select.styled { position: relative; width: 190px; opacity: 0; filter: alpha(opacity=0); z-index: 5; } .disabled { opacity: 0.5; filter: alpha(opacity=50); }</style>
+    <script type="text/javascript" src="/resource/script/web/common/melonweb_openlib.js"></script>
+    <script type="text/javascript" src="/resource/script/web/common/melonweb_comm.js"></script>
+    <script type="text/javascript" src="/resource/script/web/common/melonweb_member_external.js?ts=221005"></script>
+    <script type="text/javascript" src="/resource/script/web/common/webUtils.js?date=1608221544"></script>
+    <script type="text/javascript" src="/resource/script/web/common/CaptchaUtils.js?v=20240116"></script>
+    <link rel="stylesheet" type="text/css" href="//cdnticket.melon.co.kr/resource/style/web/common/common_eng-06ba60987a.css" id="linkCommonOnestopCss">
+<script>var APIURL = '/tktapi', POCURL = '/tktapi_poc', CTX = '';</script>
+
+<script type="text/javascript" src="/resource/script/web/common/dictionaryForMultiNationLanguage.js?modifyDate=2025011713" id="dictionaryForMultiNationLanguage" data-modifydate="2025011713"></script>
+<script>
+
+	/**
+	 * 날짜문자열을 넘기면 YYYY.mm.dd 형태로 포맷팅됨.
+	 * Deprecated Sun, 31 Jul 2016 17:00
+	 */
+	function convertDateFormat(date, time){
+		if(date == null || date == undefined || date.length != 8){
+			date = "20000101";
+		}
+		if(time == null || time == undefined || (time.length != 4 && time.length != 6)){
+			time = "0000";
+		}
+		
+		// 기존 로직
+		//var d = new Date(Date.parse(date.substr(0,4)+"-"+date.substr(4,2)+"-"+date.substr(6,2)+"T"+time.substr(0,2)+":"+time.substr(2,2)));
+		//return d.toUTCString().substr(0, 22); // Sat, 30 Jul 2016 18:00
+		
+		// 변환 로직
+		//var d = new Date(date+((time).length == 4 ? (time+'00') : (time)).replace(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/,'$1/$2/$3 $4:$5:$6'));
+		
+		//영문 변환 - UTCString 쓰지 않고 메뉴얼 변환
+		//return date.length >= 8 ? getMonthName((parseInt(date.substr(4,2), 10) - 1)) + " " + parseInt(date.substr(6,2), 10) + date.substr(0,4) + " " + time.substr(0,2) + ":" + time.substr(2,2) : ""
+		//return date.length >= 8 ? getMonthName((parseInt(date.substr(4,2), 10) - 1)) + " " + parseInt(date.substr(6,2), 10) + date.substr(0,4) + " " + date.substr(8,2) + ":" + date.substr(10,2) : ""
+		return convertDateFormatOnlyDate(date) + " " + convertDateFormatOnlyTime(time);
+	};
+	
+	function convertDateFormat2(date){
+		if(date == null || date == undefined || date.length < 12){
+			if(date.length < 8){
+				date = "200001010000";  
+			}else{
+				date = date.substr(0, 8) + "0000";
+			}
+		}
+		return convertDateFormat(date.substr(0, 8), date.substr(8, 4));
+	};
+	
+	function convertDateFormatOnlyDate(dateStr, DATE_DELIM){
+		DATE_DELIM = (DATE_DELIM == undefined ? "." : DATE_DELIM);
+		return (dateStr.substr(0,4)+DATE_DELIM+dateStr.substr(4,2)+DATE_DELIM+dateStr.substr(6,2));
+	};
+	function convertDateFormatOnlyTime(timeStr, TIME_DELIM){
+		TIME_DELIM = (TIME_DELIM == undefined ? ":" : TIME_DELIM);
+		if(timeStr.length == 6){
+			return (timeStr.substr(0,2)+TIME_DELIM+timeStr.substr(2,2)+TIME_DELIM+timeStr.substr(4,2));
+		} else {
+			return (timeStr.substr(0,2)+TIME_DELIM+timeStr.substr(2,2));
+		}
+	};
+	
+	/**
+	 * getMonthName Function - via http://www.jquery2dotnet.com/2013/11/javascript-get-month-name-from-number.html
+	 */
+	var getMonthName = function (v) {
+		//var n = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		var n = [];
+		n = monthNameArr[LANG_CD.EN]; //16-08-25 한글 표기로 통일하기로 함.
+		/*if(langCd != undefined && langCd != '' && monthNameArr[langCd] != undefined){
+			n = monthNameArr[langCd];
+		} else {
+			n = monthNameArr['default']; 
+		}*/
+		return n[Number(v)];
+	};
+
+	function getWeekDay(dt, seperator, option) {
+		if(seperator == undefined || option == undefined){
+			var week = [];
+			week = weekNameArr[LANG_CD.EN]; //16-08-25 한글 표기로 통일하기로 함.
+			/*if(langCd != undefined && langCd != '' && monthNameArr[langCd] != undefined){
+				week = weekNameArr[langCd];
+			} else {
+				week = weekNameArr['default']; 
+			}*/
+			var day = new Date(dt.split(".").join("/")).getDay();
+			return week[day];
+		} else {
+			var datestr = dt;
+			try {
+				var date_arr = getYmdArr(datestr, seperator);
+				var obj_date = new Date(date_arr[0],date_arr[1]-1,date_arr[2]);
+				if(option == '0') {
+					return obj_date.getDay();
+				}
+				else if(option == '1') {
+					var week_str = new Array("일","월","화","수","목","금","토");
+					return week_str[obj_date.getDay()];
+				}
+			}
+			catch(e) {
+				//alert('udfMainFrm.js : '+e);
+			}
+		}
+	};
+	function getYmdArr(dateStr, seperator) {
+		try {
+			if(seperator == '') {
+				var rtnArr = new Array();
+				rtnArr[0] = dateStr.substr(0,4);
+				rtnArr[1] = dateStr.substr(4,2);
+				rtnArr[2] = dateStr.substr(6,2);
+				return rtnArr;
+			}
+			else {
+				return dateStr.split(seperator);
+			}
+		}
+		catch(e) {
+			//alert('udfMainFrm.js : '+e);
+		}
+	};
+
+	var LANG_CD = {
+		EN: 'EN',
+		CN: 'CN',
+		JP: 'JP',
+		KR: 'KR'
+	};
+	var langCd = LANG_CD.EN;
+	var COMMON_PROP = 'common';
+	var MSG_PROP = 'message';
+
+	/**
+	 * 글로벌용 임시 함수. 한글 상태명을 영문 상태명으로 변환
+	 */
+	var replaceKrToEn = function(targetProp, statusName) {
+		return replaceKrTo(LANG_CD.EN, targetProp, statusName);
+	};
+	/**
+	 * 글로벌용 임시 함수. 한글 상태명을 영문 상태명으로 변환
+	 */
+	var replaceKrToLangCd = function(targetProp, statusName) {
+		return replaceKrTo(langCd, targetProp, statusName);
+	};
+
+	/**
+	 * 글로벌용 임시 함수. 한글 상태명을 타국 상태명으로 변환
+	 */
+	var replaceKrTo = function(lang, targetProp, statusName) {
+		return replaceLangToLang(dictionaryKrTo, lang, targetProp, statusName);
+	};
+
+	var replaceEnToLangCd = function(targetProp, statusName) {
+		return replaceEnTo(langCd, targetProp, statusName);
+	};
+	/**
+	 * 글로벌용 임시 함수. 영문을 타국어로 변환
+	 */
+	var replaceEnTo = function(lang, targetProp, statusName) {
+		return replaceLangToLang(dictionaryEnTo, lang, targetProp, statusName);
+	};
+
+	/**
+	 * 글로벌용 임시 함수. 영문을 타국어로 변환
+	 */
+	var hasWordEnTo = function(lang, targetProp, statusName) {
+		if (statusName.indexOf(replaceEnTo(lang, targetProp, statusName)) > -1) {
+			return false;
+		} else {
+			return true;
+		}
+	};
+	/**
+	 * 글로벌용 임시 함수. 국어을 타국어로 변환
+	 */
+	var hasWordKrTo = function(lang, targetProp, statusName) {
+		if (statusName.indexOf(replaceKrTo(lang, targetProp, statusName)) > -1) {
+			return false;
+		} else {
+			return true;
+		}
+	};
+
+	var replaceLangToLang = function(dictionaryFromLang, toLang, targetProp, statusName) {
+		var langIndex = 0;
+		switch (toLang) {
+			case LANG_CD.EN:
+				langIndex = 0;
+				break;
+			case LANG_CD.CN:
+				langIndex = 1;
+				break;
+			case LANG_CD.JP:
+				langIndex = 2;
+				break;
+			case LANG_CD.KR:
+				langIndex = 3;
+				break;
+			default:
+				langIndex = 0;
+				break;
+		};
+
+		//사전에 카테고리나 단어가 정의되지 않은 경우는 statusName을 반환.
+		if (dictionaryFromLang[targetProp] == undefined
+			|| dictionaryFromLang[targetProp][statusName] == undefined
+			|| dictionaryFromLang[targetProp][statusName][langIndex] == undefined
+			/*|| dictionaryFromLang[targetProp][statusName][langIndex] == ''*//*의도적 빈 값 처리를 위해 넣음*/
+		) {
+			return statusName;
+		} else {
+			return dictionaryFromLang[targetProp][statusName][langIndex];
+		}
+	};
+
+	/**
+	 * target elements를 순회하면서 action에 설정된 작업을 처리한다.
+	 * @param complete - function 투어 완료했을 때 처리할 작업
+	 * @param target - HTML Element 투어할 DOM Element
+	 * @param action - function 처리할 작업
+	 * @param isSeries - boolean 내부 재귀 호출용 파라미터.
+	 * 출처: http://www.bsidesoft.com/?p=1431
+	 */
+	function tour(complete, target, action, isSeries) {
+		var stack, curr, i, start, timeCounter;
+
+		//최초 호출된 경우
+		if (!isSeries) {
+			//최초 스택을 생성-이전동일
+			stack = [target.length ? target : [target]];
+		} else {
+			// 이어받는 경우는 target이 stack임
+			stack = target;
+		}
+
+		//시작시간을 확인한다.
+		start = Date.now();
+
+		//시간확인용 카운터 초기화
+		timeCounter = 0;
+
+		while (curr = stack.pop()) {
+			i = curr.length;
+			while (i--) {
+				action(curr[i]);
+				if (curr[i].childNodes && curr[i].childNodes.length) {
+					stack.push(curr[i].childNodes);
+				}
+			}
+			
+			//카운터가 100이 될때마다 시간을 측정한다.
+			if (timeCounter++ == 100) {
+				//3초가 경과되었다면
+				if (Date.now() - start > 3000) {
+					//다음 프레임으로 넘긴다.
+					return setTimeout(function() {
+						//현재 스택을 target으로, isSeries를 true로
+						tour(complete, stack, action, true);
+					}, 1);
+				}
+				//카운터를 초기화
+				timeCounter = 0;
+			}
+		}
+
+		//만약 무사히 나왔다면 완료된것!
+		complete();
+	}
+
+	var replaceAllBodyEnToLangCd = function(callback) {
+		replaceAllEnToLangCd(document.body,callback);
+	}
+	var getCssPathToLangCd = function(currPage) {
+		var langCodeOfCss = '';
+		var engCssPath = "//cdnticket.melon.co.kr/resource/style/web/common/common_eng-06ba60987a.css";
+		var chnCssPath = "//cdnticket.melon.co.kr/resource/style/web/common/common_chn-2b0fa0a0bc.css";
+		var jpnCssPath = "//cdnticket.melon.co.kr/resource/style/web/common/common_jpn-a2276f075b.css";
+		var cssPath;
+		switch (langCd) {
+			case LANG_CD.EN:
+				// langCodeOfCss = 'eng';
+                cssPath = engCssPath;
+				break;
+			case LANG_CD.CN:
+				// langCodeOfCss = 'chn';
+                cssPath = chnCssPath;
+				break;
+			case LANG_CD.JP:
+				// langCodeOfCss = 'jpn';
+                cssPath = jpnCssPath;
+				break;
+			case LANG_CD.KR:
+				// langCodeOfCss = '';
+                cssPath = engCssPath;
+				break;
+			default:
+				// langCodeOfCss = 'eng';
+                cssPath = engCssPath;
+				break;
+		};
+		// var tempLangCodeOfCss = (langCodeOfCss == '' ? '' : '_' + langCodeOfCss);
+		// tempLangCodeOfCss += (currPage.indexOf('onestop') > -1 ? '_onestop' : '');
+		// var cssPath = '../../../resource/style/web/common/common'+tempLangCodeOfCss+'.css';
+		return cssPath;
+	}
+
+	var setCssToLangCd = function() {
+		var targetCssLink = '';
+		if(document.getElementById('linkCommonOnestopCss')){
+			targetCssLink = document.getElementById('linkCommonOnestopCss');
+		} else if(document.getElementById('linkCommonCss')){
+			targetCssLink = document.getElementById('linkCommonCss');
+		}
+		if(typeof targetCssLink != "object"){
+			//if( window.console ){ console.log("css 변환 실패"); }
+			return;
+		}
+		var currCssHref = targetCssLink.getAttribute('href');
+		var nextCssHref = getCssPathToLangCd('onestop');
+		if(currCssHref != nextCssHref){
+			targetCssLink.setAttribute('href',nextCssHref);
+		}
+	};
+	var replaceAllEnToLangCd = function(target,callback) {
+		var baseLang = LANG_CD.EN;
+		replaceAllLangToLangCd(baseLang,target,callback);
+	};
+	var replaceAllKrToLangCd = function(target,callback) {
+		var baseLang = LANG_CD.KR;
+		replaceAllLangToLangCd(baseLang,target,callback);
+	};
+	var replaceAllLangToLangCd = function(baseLang,target,callback) {
+		if (target == undefined) {
+			target = document.body;
+		}
+		//target.style.display = "none";
+		//사용하기
+		tour(
+			function complte() {
+				setCssToLangCd();
+				//target.style.display = ""; //block을 주면 css 잡힌 것을 해치게 됨.
+				//if( window.console ) console.log('tour completed!');
+				//if( window.console ) console.log('callback resolve start');
+				callback != undefined && typeof callback == 'function' ? callback() : '';
+			},
+			target,
+			function action(el) {
+				//if( window.console ) console.log("el.nodeType  = " + el.nodeType);
+				if (el.nodeType == 1) {
+					var targetEleType = '';
+					var targetEleAttr = '';
+					if (el.innerHTML) {
+						targetEleType = "innerHTML";
+						targetEleAttr = el.innerHTML;
+					} else if (el.text) {
+						targetEleType = "text";
+						targetEleAttr = el.text;
+					} else if (el.value) {
+						targetEleType = "value";
+						targetEleAttr = el.value;
+					} else {
+						//if( window.console ) console.log("skip");
+					};
+
+					if(targetEleAttr != ''){
+						//if( window.console ) console.log(targetEleType + "\t\t\t" + targetEleAttr);
+						if (baseLang == LANG_CD.EN && hasWordEnTo(langCd, COMMON_PROP, targetEleAttr)) {
+							el[targetEleType] = replaceEnTo(langCd, COMMON_PROP, targetEleAttr);
+						} else
+						if (baseLang == LANG_CD.KR && hasWordKrTo(langCd, COMMON_PROP, targetEleAttr)) {
+							el[targetEleType] = replaceKrTo(langCd, COMMON_PROP, targetEleAttr);
+						}
+					}
+				}
+			}
+		);
+	};
+
+</script>
+</head>
+<body>
+
+    <form id="sForm" method="post" name="sForm" target="oneStopFrame">
+<input type="hidden" id="langCd" name="langCd" value="EN">
+<input type="hidden" id="prodId" name="prodId" value="211217">
+<input type="hidden" id="pocCode" name="pocCode" value="SC0002">
+<input type="hidden" id="perfTypeCode" name="perfTypeCode" value="GN0001">
+<input type="hidden" id="perfDate" name="perfDate" value="20250524">
+<input type="hidden" id="scheduleNo" name="scheduleNo" value="100001">
+<input type="hidden" id="sellTypeCode" name="sellTypeCode" value="ST0001">
+<input type="hidden" id="sellCondNo" name="sellCondNo" value="">
+<input type="hidden" id="perfMainName" name="perfMainName" value="2025 NCT DREAM FANMEETING 〈DREAM QUEST〉">
+<input type="hidden" id="seatGradeNo" name="seatGradeNo" value="">
+<input type="hidden" id="seatGradeName" name="seatGradeName" value="">
+<input type="hidden" id="blockId" name="blockId" value="">
+<input type="hidden" id="sntv" name="sntv" value="">
+<input type="hidden" id="blockTypeCode" name="blockTypeCode" value="">
+<input type="hidden" id="floorNo" name="floorNo" value="">
+<input type="hidden" id="floorName" name="floorName" value="">
+<input type="hidden" id="areaNo" name="areaNo" value="">
+<input type="hidden" id="areaName" name="areaName" value="">
+<input type="hidden" id="prodTypeCode" name="prodTypeCode" value="PT0001">
+<input type="hidden" id="flplanTypeCode" name="flplanTypeCode" value="DR0002">
+<input type="hidden" id="scheduleTypeCode" name="scheduleTypeCode" value="SG0001">
+<input type="hidden" id="seatTypeCode" name="seatTypeCode" value="">
+<input type="hidden" id="jType" name="jType" value="I">
+
+<input type="hidden" id="cardGroupId" name="cardGroupId" value="">
+<input type="hidden" id="cardBpId" name="cardBpId" value="">
+<input type="hidden" id="cardMid" name="cardMid" value="">
+<input type="hidden" id="rsrvStep" name="rsrvStep" value="SAT">
+<input type="hidden" id="zamEnabled" name="zamEnabled" value="0">
+<input type="hidden" id="zamKey" name="zamKey" value="">
+<input type="hidden" id="trafficCtrlYn" name="trafficCtrlYn" value="N">
+<input type="hidden" id="netfunnel_key" name="netfunnel_key" value="">
+
+<input type="hidden" id="stvn_view_list" name="stvn_view_list" value="">
+<input type="hidden" id="mapClickYn" name="mapClickYn" value="N">
+</form>
+<form id="sFormSub" method="post" name="sFormSub">
+	<input type="hidden" id="prodId" name="prodId" value="211217">
+	<input type="hidden" id="scheduleNo" name="scheduleNo" value="100001">
+	<input type="hidden" id="flplanTypeCode" name="flplanTypeCode" value="">
+	<input type="hidden" id="seatTypeCode" name="seatTypeCode" value="">
+	<input type="hidden" id="encryptedSeatIds" name="encryptedSeatIds" value="">
+	<input type="hidden" id="interlockTypeCode" name="interlockTypeCode" value="">
+	<input type="hidden" id="interlockTid" name="interlockTid" value="">
+</form>
+<div id="oneStopDiv" style="overflow: hidden; width: 100%; border: 0px solid red; height: 648px;">
+    <iframe id="oneStopFrame" name="oneStopFrame" src="" style="width:100%; height: 100%; border: 0px;overflow: auto; -webkit-overflow-scrolling: touch;" frameborder="0"></iframe>
+</div>
+
+<!-- UX-1309 -->
+<!-- 인증예매 안내-->
+<div class="layerPop" id="certification" style="width:310px; top:125px; left:50%;margin-left:-155px;display:block;">
+		<div class="dim_back"></div>
+		<div class="la_header">
+			<div class="la_header1">
+				<h3 class="ac">Secure booking service</h3>
+				</div>
+		</div>
+		<div class="la_middle">
+			<div class="la_middle1">
+				<div class="la_con">
+					<div class="box_certification">
+						<p class="ment">To avoid automated bookings, the secure booking<br>service requires you to enter a security code<br>when selecting a seat</p>
+						<div class="captcha">
+							<div class="api">
+								<img id="captchaImg" src="data:image/png;base64,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" style="width:230px;height:70px;">
+								</div>
+							<div class="button">
+								<button type="button" class="reflash" id="btnReload">Re Flash</button>
+								<button type="button" class="speaker" id="btnAudio">Speaker</button>
+							</div>
+						</div>
+						<div class="wrap_form_input onError">
+							<label for="label-for-captcha" class="place_holder">Please enter the characters </label>
+							<input type="text" id="label-for-captcha" class="inputType" style="border-color:#ddd;text-transform:uppercase;" maxlength="8">
+							<div class="errorMessage" id="errorMessage" style="display:none;"></div>
+						</div>
+						<div class="wrap_form_button">
+							<a href="#none" class="btn_flexible btn_full_radius" id="btnComplete"><span>Submit</span></a>
+							</div>
+						<div class="wrap_form_button">
+							<a href="#" class="link" id="btn_later">To See the seats first, Click here</a>
+							</div>
+						<div id="audioCaptcha" style="display: none;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="la_footer"><div class="la_footer1"></div></div>
+	</div>
+<!-- //인증예매 안내 -->
+<!-- //UX-1309 -->
+<input type="hidden" id="captchaEncStr" value="83ByDAv8K6na7wo06Fi93w==">
+
+<script type="text/javascript" src="/resource/script/web/add_info.js?t=202404240000"></script>
+<script type="text/javascript">
+langCd = document.getElementById("langCd").value; //MNL 전역 변수의 값을 변경
+var naviSeat            ="stepSeat.htm";
+function setLink() {
+    var frm                 = document.sForm;
+    var flplanTypeCode      = prodData.flplanTypeCode;
+    var prodTypeCode        = prodData.prodTypeCode;
+    var perfTypeCode        = prodData.perfTypeCode;
+    var sellTypeCode        = "ST0001";
+    scheduleTypeCode        = prodData.scheduleTypeCode;
+    
+    $("#scheduleNo"         ).val(prodData.scheduleNo);
+    $("#perfMainName"       ).val(prodData.perfMainName);
+    $("#prodTypeCode"       ).val(prodData.prodTypeCode);
+    $("#scheduleTypeCode"   ).val(prodData.scheduleTypeCode);
+    $("#flplanTypeCode"     ).val(flplanTypeCode);
+    $("#perfDate"           ).val(prodData.perfStartDay);
+    $("#schPerfDate"        ).val(prodData.perfStartDay);
+    $("#perfTypeCode"       ).val(perfTypeCode);
+    $("#trafficCtrlYn"      ).val(prodData.trafficCtrlYn == "Y" ? "Y" : "N");
+
+    // 비지정일 경우  인증예매팝업의 '좌석 먼저 보고 나중에 입력하기' 문구 비활성화 처리'  [CAPTCHA]
+	if (flplanTypeCode == 'DR0003') 
+		$('#btn_later').parent().hide();
+	else
+		$('#btn_later').parent().show();
+	
+    var params = "?" + $.param({langCd:langCd});
+    
+    if (prodTypeCode == "PT0001") {
+        
+        if(sellTypeCode == "ST0003"){
+            $("#rsrvStep").val("SAT");
+            var params = $("#sForm").serialize();
+            $.ajax({
+                type            : "POST"
+                , dataType      : "jsonp"
+                , url           : "/tktapi/glb/pickrsrv/usercond.json?v=1"
+                , async         : false
+                , data          : params
+                , success       : function(result) {
+                    if(result.data.authYn == "Y") {
+                        document.oneStopFrame.location.href          = "/reservation/popup/pick.htm";
+                    }
+                    else {
+                        alert(replaceEnToLangCd(MSG_PROP,result.message));
+                        rsrvPopupClose();
+                    }
+                }
+                , error         : function(e) {
+					alert(replaceEnToLangCd(MSG_PROP,"Please try again."));
+					rsrvPopupClose();
+                }
+            });
+        }
+        else {
+            
+            if (flplanTypeCode == "DR0001") {
+                $("#rsrvStep").val("SAT");
+                document.oneStopFrame.location.href          = "/reservation/popup/stepSeat.htm";
+                naviSeat = "stepSeat.htm";
+            }
+            
+            else if (flplanTypeCode == "DR0002") {
+                $("#rsrvStep").val("SAT");
+                document.oneStopFrame.location.href          = "/reservation/popup/stepBlock.htm" + params;
+                naviSeat = "stepBlock.htm" + params;
+            }
+            else {
+                $("#rsrvStep").val("TKT");
+                var sf  = parent.document.sForm;
+
+                sf.target        = "oneStopFrame";
+                sf.action        = "/reservation/popup/stepTicket.htm";
+                sf.submit();
+                //oneStopFrame.location.href          = "/reservation/popup/stepTicket.htm";
+            }
+        }
+    }
+    
+    else {
+        
+        if (flplanTypeCode == "DR0001") {
+            $("#rsrvStep").val("SAT");
+            document.oneStopFrame.location.href          = "/reservation/popup/stepSeat.htm";
+            naviSeat = "stepSeat.htm";
+        }
+        
+        else if (flplanTypeCode == "DR0002") {
+            $("#rsrvStep").val("SAT");
+            document.oneStopFrame.location.href          = "/reservation/popup/stepBlock.htm" + params;
+            naviSeat = "stepBlock.htm" + params;
+        }
+        else {
+            $("#rsrvStep").val("TKT");
+            var sf  = parent.document.sForm;
+
+            sf.target        = "oneStopFrame";
+            sf.action        = "/reservation/popup/stepTicket.htm";
+            sf.submit();
+        }
+    }
+}
+
+function goMyticket() {
+    var params = $.param({
+        langCd:langCd
+    });
+    opener.location.href           = "https://tkglobal.melon.com/myticket/rsrvList.htm"+"?"+params;
+    rsrvPopupClose();
+}
+
+function goAdvtk() {
+    opener.location.href           = "https://tkglobal.melon.com/myticket/advtkList.htm";
+    rsrvPopupClose();
+}
+
+function reset() {
+	
+	if (document.sForm.prodId.value == "") {
+        alert("Ticket ID doesn't exist.");
+        history.back();
+    }
+	
+    var params = $("#sForm").serialize();
+    $.ajax({
+        type            : "POST"
+        , dataType      : "jsonp"
+        , url           : "/tktapi/glb/product/inform.json?v=1"
+        , async         : false
+        , data          : params
+        , success       : function(result) {
+            if (result.code == "0000") {
+                if (result.prodInform != null) {
+                    prodData        = result.prodInform;
+					prodData.langCd = langCd;
+					if(langCd == 'EN'){
+						prodData.langCdTitle = '2025 NCT DREAM FANMEETING 〈DREAM QUEST〉';
+					}else if(langCd == 'JP'){
+						prodData.langCdTitle = '2025 NCT DREAM FANMEETING 〈DREAM QUEST〉';
+					}else if(langCd == 'CN'){
+						prodData.langCdTitle = '2025 NCT DREAM FANMEETING 〈DREAM QUEST〉';
+					}
+
+                    setLimit();
+                    setLink();
+                }
+                else {
+                    alert(replaceEnToLangCd(MSG_PROP,"Ticket information doesn't exist."));
+                    history.back();
+                }
+            }
+            else {
+                alert(replaceEnToLangCd(MSG_PROP,result.message));
+                history.back();
+            }
+        }
+        , error         : function(e) {
+            alert(replaceEnToLangCd(MSG_PROP,"Service is delayed."));
+            history.back();
+        }
+    });
+}
+
+function init() {
+    var params          = $("#sForm").serialize();
+    var chkSchedule     = true;
+    this.seatData       = {};
+    if($("#scheduleNo").val() == null || $("#scheduleNo").val() == ''){
+    	chkSchedule = false;
+    }
+    $.ajax({
+        type            : "POST"
+        , cache         : true
+        , url           : "/tktapi/product/informProdSch.json?v=1"
+        , async         : false
+        , data          : {
+				            prodId: $("#prodId").val()                
+				          , pocCode: $("#pocCode").val()                
+				          , scheduleNo: $("#scheduleNo").val()                
+				          , sellTypeCode: $("#sellTypeCode").val()                
+				          , sellCondNo: $("#sellCondNo").val()                
+				          , perfDate: $("#perfDate").val()                
+				          }
+		, jsonpCallback: "getInformProdSchCallBack"
+        , success       : function(result) {
+            if (result.code == "0000") {
+                if (result.prodInform != null) {
+                    prodData        = result.prodInform;
+					prodData.langCd = langCd;
+					if(langCd == 'EN'){
+						prodData.langCdTitle = '2025 NCT DREAM FANMEETING 〈DREAM QUEST〉';
+					}else if(langCd == 'JP'){
+						prodData.langCdTitle = '2025 NCT DREAM FANMEETING 〈DREAM QUEST〉';
+					}else if(langCd == 'CN'){
+						prodData.langCdTitle = '2025 NCT DREAM FANMEETING 〈DREAM QUEST〉';
+					}
+                    schData         = result.schList;
+					isLottery = result.isLottery;
+                    
+                    if (schData.length > 0) {
+                        if (prodData.rsrvAvailYn == "Y") {
+                             
+                        	if(!chkSchedule){
+                        		
+                        		if(prodData.prodTypeCode != 'PT0002' && prodData.prodTypeCode != 'PT0003'){
+                        			//var pDt = result.prodInform.perfStartDay.substr(0,4) + "." + result.prodInform.perfStartDay.substr(4,2) + "." + result.prodInform.perfStartDay.substr(6,2)
+    	                            var pDt = convertDateFormatOnlyDate(result.prodInform.perfStartDay);
+    	                            pDt += " (" + getWeekDay(result.prodInform.perfStartDay, "", "1") + ") " + convertDateFormatOnlyTime(result.prodInform.perfStartTime);
+                            	    alert(replaceKrToLangCd(MSG_PROP,'현재 회차는') + ' ' + pDt + replaceKrToLangCd(MSG_PROP,'입니다.') + '\n' + replaceKrToLangCd(MSG_PROP,'선택하신 회차가 맞는지 다시한번 확인 후 예매해 주십시오.'));
+                        		}
+                                $("#scheduleNo").val(prodData.scheduleNo);
+                        	}
+                            
+                            setLimit();
+                            setLink();
+                        }
+                        else {
+                            alert(replaceEnToLangCd(MSG_PROP,"Not the sales period."));
+                            rsrvPopupClose();
+                        }
+                    }
+                    else {
+                        alert(replaceEnToLangCd(MSG_PROP,"A valid time does not exist for this event."));
+                        rsrvPopupClose();
+                    }
+                }
+                else {
+                    alert(replaceEnToLangCd(MSG_PROP,"Ticket information doesn't exist."));
+                    rsrvPopupClose();
+                }
+            }
+            else {
+                alert(replaceEnToLangCd(MSG_PROP,result.message));
+                rsrvPopupClose();
+            }
+        }
+        , error         : function(e) {
+            alert(replaceEnToLangCd(MSG_PROP,"Service is delayed."));
+        }
+    });
+}
+
+function setLimit(){
+    $.ajax({
+        type            : "POST"
+        , xhrFields		: {withCredentials: true}
+        , url           : "/tktapi/glb/product/informLimit.json"
+        , async         : false
+        , data          : {v:1, prodId: $("#prodId").val(), pocCode : $("#pocCode").val(), scheduleNo: $("#scheduleNo").val(), sellTypeCode: $("#sellTypeCode").val()}
+        , success       : function(result) {
+            if(result.code == "0000"){
+            	lmt             = result.limitVolume;
+            	//지산 밸리 록 페스티벌 하드코딩 2017.05.15 joyh S
+            	festivalCnt		= result.festivalCnt;
+            	campingCnt		= result.campingCnt;
+            	tentCnt			= result.tentCnt;
+            	campingSGN		= result.campingSGN;
+            	campingTentFlag	= result.campingTentFlag;
+            	//지산 밸리 록 페스티벌 하드코딩 2017.05.15 joyh E
+            }else if(result.code == "T8860" || result.code == "T8861"){
+                alert(result.message);
+                rsrvPopupClose();      	
+            }else{
+            		alert(replaceEnToLangCd(MSG_PROP,'Service is delayed.'));
+            		rsrvPopupClose();
+            }
+        }
+        , jsonpCallback: "getInformLimitCallBack"
+        , error         : function(e) {
+			alert(replaceEnToLangCd(MSG_PROP,"Please try again."));
+    		    	rsrvPopupClose();
+        }
+    });
+	
+}
+$('#oneStopDiv').ready(function() {
+    if (!isMelonLogin()) {
+        alert(replaceEnToLangCd(MSG_PROP,"Before booking, please log in."));
+        close();
+        return;
+    }
+    
+	executeCaptcha();			// [CAPTCHA] 인증 예매 상품일 경우  captcha 관련 처리
+	init();
+	fncResize();
+	popupWindowSize();
+});
+
+
+/**
+ * 원스탑 팝업창 호출시 화면 크기에 따른 리사이징 함수
+ * 모든 데이터가 호출된 다음에 호출해야함
+ */
+function popupWindowSize() {
+
+	try {
+
+		var outerHeight = (window.outerHeight - window.innerHeight);
+		var outerWidth = (window.outerWidth - window.innerWidth);
+
+		$("#oneStopFrame").load(function(){
+			var $iframeElement = $(this).contents().find(".section_onestop");
+
+			window.resizeTo($iframeElement.width()+outerWidth,$iframeElement.height()+outerHeight);
+		});
+
+	} catch (e) {
+		//에러 발생시 창 리사이징 하지 않고 넘어감
+	}
+}
+
+$(window).resize(function() {
+    fncResize();
+});
+
+function fncResize() {
+    $("#oneStopFrame").parent().height($(window).height());
+    $("#oneStopFrame").height($(this).parent().height());
+}
+
+function setProdSchedule() {
+    var schDate             = prodData.perfStartDay;
+    var schTime             = prodData.perfStartTime;
+    var prodSchedule        = "";
+
+    if (scheduleTypeCode == "SG0001") {
+        prodSchedule = convertDateFormat(schDate, schTime);
+    }
+    else {
+        prodSchedule           = replaceKrToLangCd(COMMON_PROP,"상시");
+    }
+
+
+    $('#oneStopFrame').contents().find(".txt_prod_name").prop('title', '2025 NCT DREAM FANMEETING 〈DREAM QUEST〉');
+    $('#oneStopFrame').contents().find(".txt_prod_name").html('2025 NCT DREAM FANMEETING 〈DREAM QUEST〉');
+
+
+    $('#oneStopFrame').contents().find(".txt_prod_schedule").text(prodSchedule);
+    $('#oneStopFrame').contents().find("body").css("overflow", "hidden");
+}
+
+function setProdSeat() {
+    var ticketInfoText      = $('#oneStopFrame').contents().find(".txt_ticket_info");
+    var ticketInfoList      = $('#oneStopFrame').contents().find(".list_ticket_info");
+    var ticketInfo          = "";
+    var ticketCount         = 0;
+    var ticketTitle         = "";
+
+    ticketInfoText.empty();
+    ticketInfoList.empty();
+
+    if ($("#seatTypeCode").val() == "SE0003") {
+        var totalSelected = 0;
+        $.each(this.typeData, function(key, val) {
+            totalSelected  += parseInt(val.selectedVolume, 10);
+        });
+        ticketInfoText.append($("<span />").append(replaceKrToLangCd(COMMON_PROP,'비지정')+" (<span id=\"txtNoneSeatCount\" >" + totalSelected + "</span>"+replaceKrToLangCd(COMMON_PROP,'석')+")"));
+    }
+    else {
+        $.each(seatData, function(key, val) {
+            ticketInfoList.append($("<li />").text("- " + gradeData[val.grade] + " " + val.title));
+            if (ticketCount == 0) ticketTitle = gradeData[val.grade] + " " + val.title;
+            ticketCount++;
+        });
+
+        if(langCd == LANG_CD.EN){
+            ticketInfo = "<span>" + replaceEnToLangCd(COMMON_PROP,"Seat(s)") + "</span>" + " " + ticketCount + "<br/>" + ticketTitle;
+        } else {
+            ticketInfo = ticketCount + " " + "<span>" + replaceEnToLangCd(COMMON_PROP,"Seat(s)") + "</span>" + "<br/>" + ticketTitle;
+        }
+        ticketInfoText.html(ticketInfo);
+        if (ticketCount > 1) {
+            /*
+        	ticketInfoText.append(" 외");
+            ticketInfoText.append($("<span />").attr("onmouseover", "toolTip('layer_ticket');").addClass("txt_b").text((ticketCount - 1) +"석"));
+            */
+        	ticketInfoText.append(" ");
+            ticketInfoText.append($("<span />").attr("onmouseover", "toolTip('layer_ticket');").addClass("txt_b").text((ticketCount - 1) + " " + replaceKrToLangCd(COMMON_PROP,"석") + replaceEnToLangCd(COMMON_PROP,"more")));
+        }
+    }
+}
+
+function setCancelInfo(cancelFeeObj) {
+    setCancelCloseDt();
+    setCancelFee(cancelFeeObj);
+}
+
+function setCancelCloseDt() {
+    var cancelCloseDtText       = $('#oneStopFrame').contents().find(".txt_cancel_close_dt");
+    var cancelFeeInfoText       = $('#oneStopFrame').contents().find(".txt_cancel_fee_info");
+    var cancelCloseDt           = prodData.cancelCloseDt;
+    var cancelCloseDtStr        = "";
+    //    var cancelCloseDtStr= cancelCloseDt.substr(0,4) + "년 " + cancelCloseDt.substr(4,2) + "월 " + cancelCloseDt.substr(6,2) + "일 " + cancelCloseDt.substr(8,2) + "시 " + cancelCloseDt.substr(10,2);
+    /*
+    if (cancelCloseDt != null && cancelCloseDt != undefined) {
+        cancelCloseDtStr            = cancelCloseDt.substr(0,4) + "년 " + parseInt(cancelCloseDt.substr(4,2)) + "월 " + parseInt(cancelCloseDt.substr(6,2)) + "일(" + getWeekDay(cancelCloseDt, "", "1") + ")";
+        cancelCloseDtStr            += " " + cancelCloseDt.substr(8,2) + ":" + cancelCloseDt.substr(10,2);
+    }
+    */
+    //cancelCloseDtStr = convertDateFormat(cancelCloseDt.substr(0, 8), cancelCloseDt.substr(8, 4));
+    cancelCloseDtStr = convertDateFormat2(cancelCloseDt);
+    cancelCloseDtText.html(cancelCloseDtStr);
+    var tempCancelFeePercentText = "0"+(prodData.maxCancelFeeVal == 0 ? "" : "~" + prodData.maxCancelFeeVal)+"%";
+    var tempInfoText = replaceEnToLangCd(COMMON_PROP,"of the ticket price");
+    var tempCancelFeeInfoText = '';
+    if(langCd == LANG_CD.EN){
+    	tempCancelFeeInfoText = tempCancelFeePercentText+"<br>(" + tempInfoText + ")";
+    } else {
+    	tempCancelFeeInfoText = tempInfoText + " " + tempCancelFeePercentText;
+    }
+    cancelFeeInfoText.html(tempCancelFeeInfoText);
+}
+
+function setCancelFee(cancelFeeObj) {
+    $.ajax({
+        type            : "POST"
+        , dataType      : "jsonp"
+        , url           : "/tktapi/glb/product/cancelfee.json?v=1"
+        , async         : false
+        , data          : {prodId: prodData.prodId, pocCode : prodData.pocCode, perfDate: prodData.perfStartDay}
+        , jsonpCallback: "ticketCancel"
+        , success       : function(result) {
+            feeData             = result.list;
+            $.each(feeData, function(key, val) {
+               	if(val.TODAY == val.FROMDT && val.CANCELFEETXT != 'None'){ //무부과 기간은 지났지만 예매당일 일시
+               		var trobjDummy           = $("<tr/>");
+                	var toDay = convertDateFormatOnlyDate(val.TODAY);
+	                trobjDummy.append("<td>"+toDay+"</td>");
+	                trobjDummy.append("<td>"+replaceEnToLangCd(COMMON_PROP, "None")+"</td>");
+	                trobjDummy.appendTo(cancelFeeObj);
+
+	                var todayDate = new Date(); 
+                	todayDate.setDate( todayDate.getDate() + 1);
+                	var yy = todayDate.getFullYear();
+                	var mm = todayDate.getMonth()+1; mm = (mm < 10) ? '0' + mm : mm;
+                	var dd = todayDate.getDate(); dd = (dd < 10) ? '0' + dd : dd;
+                	
+                    var cancelStartDt       = convertDateFormatOnlyDate(yy + "" + mm + "" + dd);
+                    var cancelEndDt         = convertDateFormatOnlyDate(val.TODT);
+                    if (val.TODT < val.FROMDT) cancelEndDt = convertDateFormatOnlyDate(val.FROMDT);
+                }
+                else {
+                    var cancelStartDt       = convertDateFormatOnlyDate(val.FROMDT);
+                    var cancelEndDt         = convertDateFormatOnlyDate(val.TODT);
+                    if (val.TODT < val.FROMDT) cancelEndDt = convertDateFormatOnlyDate(val.FROMDT);
+                }
+               	
+               	var trobj           = $("<tr/>");
+                if(cancelStartDt <= cancelEndDt){
+                	if (cancelStartDt == cancelEndDt) {
+                        trobj.append("<td>" + cancelStartDt + "</td>");
+                    }
+                    else {
+                        trobj.append("<td>" + cancelStartDt + " ~ " + cancelEndDt + "</td>");
+                    }
+                	trobj.append("<td>" + val.CANCELFEETXT + "</td>");
+
+                    trobj.appendTo(cancelFeeObj);
+                }
+            });
+        }
+        , error         : function(e) {
+			alert(replaceEnToLangCd(MSG_PROP,"Please try again."));
+        }
+    });
+}
+
+function setRsrvNavi(rStepNo) {
+    var rsrvNavigation              = $('#oneStopFrame').contents().find(".location_step");
+
+    rsrvNavigation[0].style.display = "none"; /*MNL*/
+    if ($("#rsrvStep").val() == "SAT") {
+        rsrvNavigation.children().append("<li class=\"step\"><a href=\"/reservation/popup/"+ naviSeat +"\" class=\"btn_o_menu btn_o_menu01\">Select Seats</a></li>");
+        if (rStepNo == "2") {
+            rsrvNavigation.children().append("<li class=\"step\"><a href=\"javascript:;\" class=\"btn_o_menu btn_o_menu02 on\">Select Price</a></li>");
+            rsrvNavigation.children().append("<li class=\"step\"><a href=\"javascript:;\" class=\"btn_o_menu btn_o_menu03\">Delivery/Payment</a></li>");
+        }
+        else if (rStepNo == "3") {
+            rsrvNavigation.children().append("<li class=\"step\"><a href=\"/reservation/popup/stepTicket.htm\" class=\"btn_o_menu btn_o_menu02\">Select Price</a></li>");
+            //rsrvNavigation.children().append("<li class=\"step\"><a href=\"javascript:;\" onclick=\"history.back(); return false;\" class=\"btn_o_menu btn_o_menu02\">Select Price</a></li>");
+            rsrvNavigation.children().append("<li class=\"step\"><a href=\"javascript:;\" class=\"btn_o_menu btn_o_menu03 on\">Delivery/Payment</a></li>");
+        }
+    }
+    else {
+        rsrvNavigation.children().removeClass("list_step");
+    	rsrvNavigation.children().addClass("list_give");
+        if (rStepNo == "2") {
+            rsrvNavigation.children().append("<li class=\"btn_menu btn_menu01 on\">Select Price</li>");
+            rsrvNavigation.children().append("<li class=\"btn_menu btn_menu02\">Delivery/Payment</li>");
+        }
+        else if (rStepNo == "3") {
+            rsrvNavigation.children().append("<li onclick=\"history.back();\" class=\"btn_menu btn_menu01\">Select Price</li>");
+            rsrvNavigation.children().append("<li class=\"btn_menu btn_menu02 on\">Delivery/Payment</li>");
+        }
+    }
+    /*MNL*/
+    replaceAllEnToLangCd(rsrvNavigation[0],function(){
+        rsrvNavigation[0].style.display = "";
+    });
+}
+
+function rsrvPopupClose() {
+    self.close();
+}
+
+function doFinish(rsrvSeq) {
+	var params = $.param({
+		rsrvSeq:rsrvSeq,
+		langCd:langCd
+	});
+    document.oneStopFrame.location.href      = "/reservation/popup/stepFinish.htm"+"?"+params;
+}
+
+var $dom = {};
+$dom.addInfo = {};
+
+var isMobile            = false;    // KCP media_type 사용
+var scheduleTypeCode    = "";
+var payParams           = {};
+var prodData            = {};
+var typeData            = {};
+var seatData            = {};
+var couponData          = {};
+var advtkData           = {};
+var schData             = {};
+var lmt                 = 0;
+//지산 밸리 록 페스티벌 하드코딩 2017.05.12 joyh S
+var festivalCnt			= 0;
+var campingCnt			= 0;
+var tentCnt				= 0;
+var campingSGN			= {};
+var campingTentFlag		= "";
+//지산 밸리 록 페스티벌 하드코딩 2017.05.12 joyh E
+var feeData             = {};
+var gradeData           = {};
+var data                = {proddata: {}, seatdata: {},  ticketdata: {},  coupondata: {},  advtkdata: {}, deliveryCost: 0, selectedSeatCount: 0, selectedTicketCount: 0};
+var dcPriceCheckYn      = "N";
+var captchaObj 			= null;
+var isLottery = false;
+/**
+ *  [CAPTCHA] 인증 예매   관련 처리 
+ */
+function executeCaptcha(){
+	try{
+		captchaObj = new Captcha('Y', $('#langCd').val());
+	}catch(e){
+		console.log(e);
+		$("#certification").hide();
+	}
+}
+
+
+var util = {};
+util.getIntWithDefaultOf0 = function(intStr){
+    var res = parseInt(intStr, 10) || 0;
+    return res;
+};
+
+/**
+ * 할인권종 매수제한 체크 [DcPrice]
+ */
+function chkDcPrice(_payParams) {
+    var success = true;
+    if( dcPriceCheckYn == 'Y' ){
+		var dcPriceData	= new Array();
+		var tmpData = {};
+		dcPriceData.push({name:"prodId"             , value: prodData.prodId});
+		$.each(typeData, function(key, val) {
+			if (util.getIntWithDefaultOf0(val.selectedVolume) > 0) {
+				if( tmpData.hasOwnProperty(val.priceNo) ){
+					tmpData[val.priceNo] = util.getIntWithDefaultOf0(tmpData[val.priceNo])	+ util.getIntWithDefaultOf0(val.selectedVolume);
+				}else{
+					tmpData[val.priceNo] = util.getIntWithDefaultOf0(val.selectedVolume);
+				}
+			}
+		});
+
+		$.each(tmpData, function(key, val) {
+			dcPriceData.push({name:"dcPriceNo", value: key}, {name:"dcPriceNoCnt", value:val});
+			if( _payParams != undefined )
+				_payParams.push({name:"dcPriceNo", value: key}, {name:"dcPriceNoCnt", value:val});
+		});
+
+        $.ajax({
+            type            : 'POST'
+            , dataType      : 'jsonp'
+            , url           : '/tktapi/glb/reservation/dcPricelimit.json?v=1'
+            , async         : false
+            , data          : dcPriceData
+            , success       : function(result) {
+                if( result.code == "9999" ){
+                    success = false;
+                    if( result.message != undefined ) alert(result.message);
+                }else{
+                    success = true;
+                }
+            }
+            , error         : function(e) {
+                success = false;
+                alert("다시 시도부탁드립니다.");
+            }
+        });
+    }
+    return success;
+}
+
+function cancelLock() {
+	var encryptedSeatIds = document.sFormSub.encryptedSeatIds.value;
+	var interlockTypeCode = document.sFormSub.interlockTypeCode.value;
+	var interlockTid = document.sFormSub.interlockTid.value;
+	var prodId = document.sFormSub.prodId.value;
+
+	//seatIds가 없거나 interlockTypeCode가 세종이 아닐때는 lock 해지 안함
+	if (encryptedSeatIds === "" || interlockTypeCode === "" || interlockTypeCode !== "IL0002") {
+		return;
+	}
+
+	var data = {
+		encryptedSeatIds : encryptedSeatIds,
+		interlockTypeCode : interlockTypeCode,
+		interlockTid : interlockTid,
+		prodId : prodId
+	};
+
+	$.ajax({
+		type            : 'POST'
+		, url           : APIURL + '/glb/reservation/cancel/lock.json?v=1'
+		, async         : false
+		, data          : data
+		, success       : function(result) {
+
+		}
+		, error         : function(e) {
+			alert("다시 시도 부탁드립니다.");
+		}
+	});
+}
+
+</script>
+
+
+</body></html>
