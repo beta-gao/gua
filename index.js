@@ -404,7 +404,7 @@ async function waitForNextButtonAndClick(frame, maxAttempts = 20, interval = 500
 async function startMelonBot({ url, prodId, targetDate, langCd = 'EN', seatKeywords}) {
   // 启动浏览器（puppeteer-core 用户需指定 executablePath）
   const browser = await puppeteer.launch({
-    headless: true, // 或 false 方便你远程桌面调试
+    headless: false, // 或 false 方便你远程桌面调试
     // 在这里加上 executablePath ↓↓↓
     executablePath: '/usr/bin/google-chrome-stable',
     args: ['--no-sandbox', '--disable-setuid-sandbox']
